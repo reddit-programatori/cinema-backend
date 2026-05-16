@@ -1,7 +1,15 @@
 spring:
 
+  spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/mydatabase
+    username: myuser
+    password: secret
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: update
     show-sql: true
     properties:
@@ -18,3 +26,5 @@ spring:
 app:
   jwtSecret: "vTq9zKpL4mXr7Qw2Nd8HsF6UaYcE1JgP5bR3ZxC0uMiDoWlA9BnSfGhKt"
   jwtExpirationMs: 3600000
+
+  
