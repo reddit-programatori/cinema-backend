@@ -1,8 +1,7 @@
 package dev_practice.cinema_backend;
 
 import dev_practice.cinema_backend.model.User;
-import dev_practice.cinema_backend.repository.RoleRepository;
-import dev_practice.cinema_backend.repository.UserRepository;
+import dev_practice.cinema_backend.adapter.out.repository.RoleRepository;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

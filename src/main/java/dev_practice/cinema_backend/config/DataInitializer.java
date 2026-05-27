@@ -2,8 +2,7 @@ package dev_practice.cinema_backend.config;
 
 import dev_practice.cinema_backend.model.Role;
 import dev_practice.cinema_backend.model.User;
-import dev_practice.cinema_backend.repository.RoleRepository;
-import dev_practice.cinema_backend.repository.UserRepository;
+import dev_practice.cinema_backend.adapter.out.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Configuration

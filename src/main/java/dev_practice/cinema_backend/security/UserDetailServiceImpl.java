@@ -1,7 +1,7 @@
 package dev_practice.cinema_backend.security;
 
+import dev_practice.cinema_backend.adapter.out.repository.UserRepository;
 import dev_practice.cinema_backend.model.UserDetailsImpl;
-import dev_practice.cinema_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
