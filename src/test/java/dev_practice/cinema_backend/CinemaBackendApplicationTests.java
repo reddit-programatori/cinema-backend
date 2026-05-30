@@ -1,9 +1,8 @@
 package dev_practice.cinema_backend;
 
-import dev_practice.cinema_backend.model.User;
-import dev_practice.cinema_backend.repository.RoleRepository;
-import dev_practice.cinema_backend.repository.UserRepository;
+import dev_practice.cinema_backend.adapter.out.repository.RoleRepository;
 
+import dev_practice.cinema_backend.adapter.out.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,11 +29,5 @@ class CinemaBackendApplicationTests {
 	@Test
 	@Rollback(value = false)
 	void createUser(){
-		User user = User.builder()
-				.name("Admin")
-				.lastname("Test")
-				.password("Admin123").build();
-		userRepository.save(user);
-		logger.info("User: {}", user);
 	}
 }
