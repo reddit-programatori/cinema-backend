@@ -12,9 +12,15 @@ spring:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: update
     show-sql: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
+
+  sql:
+    init:
+      mode: always
+      separator: "^;"
 
   application:
     name: cinema-backend
@@ -26,5 +32,3 @@ spring:
 app:
   jwtSecret: "vTq9zKpL4mXr7Qw2Nd8HsF6UaYcE1JgP5bR3ZxC0uMiDoWlA9BnSfGhKt"
   jwtExpirationMs: 3600000
-
-  

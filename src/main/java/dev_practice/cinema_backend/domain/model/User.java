@@ -1,19 +1,36 @@
 package dev_practice.cinema_backend.domain.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a user in the application.
- * Stores basic account information and related comments.
+ * Stores basic account information and roles.
  */
 
 public class User {
 
     private long id;
     private String name;
+    private String lastname;
+    private String username;
     private String email;
     private String password;
-    private List<Comment> comments;
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
+    }
+
+    public User(long id, String name, String lastname, String username, String email, String password,
+                Set<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles != null ? roles : new HashSet<>();
+    }
 
     public long getId() {
         return id;
@@ -29,6 +46,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -47,19 +80,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public User(long id, String name, String email, String password, List<Comment> comments) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.comments = comments;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

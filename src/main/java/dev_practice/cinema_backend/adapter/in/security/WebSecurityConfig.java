@@ -1,6 +1,5 @@
-package dev_practice.cinema_backend.config;
+package dev_practice.cinema_backend.adapter.in.security;
 
-import dev_practice.cinema_backend.security.UserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +10,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebConfig {
+public class WebSecurityConfig {
 
     private final UserDetailServiceImpl userDetailServiceImpl;
 
@@ -29,29 +27,25 @@ public class WebConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
+                                        "/**", // TODO Remove this after security implementation
                                         "/api/auth",
                                         "/actuator/health",
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**"
                                 ).permitAll().anyRequest().authenticated());
 
-        return  httpSecurity.build();
+        return httpSecurity.build();
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailServiceImpl);
-        provider.setPasswordEncoder(passwordEncoder());
+        provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
     }
 }

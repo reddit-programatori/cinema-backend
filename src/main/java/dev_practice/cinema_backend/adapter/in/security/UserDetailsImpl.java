@@ -1,5 +1,6 @@
-package dev_practice.cinema_backend.model;
+package dev_practice.cinema_backend.adapter.in.security;
 
+import dev_practice.cinema_backend.domain.model.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,11 +18,11 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public static UserDetailsImpl build(User user){
+    public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorityList = user.getRoles().stream()
-                .map(role ->  new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(user.getUsername(),user.getPassword(),authorityList);
+        return new UserDetailsImpl(user.getUsername(), user.getPassword(), authorityList);
     }
 
     @Override

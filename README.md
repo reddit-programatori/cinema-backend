@@ -21,12 +21,12 @@ Spring Boot REST API for the cinema project.
 ## Running locally
 
 ### Prerequisites
-- JDK 25
-- Docker (the `spring-boot-docker-compose` dependency auto-starts the Postgres in `compose.yaml` on app start)
+- docker
+- docker-compose
 
 ### Run
 ```bash
-./gradlew bootRun
+docker compose up --build
 ```
 
 The app boots on `http://localhost:8080`. Postgres is started automatically on a random host port (mapped to container `5432`).

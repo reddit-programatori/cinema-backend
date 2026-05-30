@@ -17,7 +17,7 @@ import java.util.List;
 public class MovieEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
@@ -27,6 +27,11 @@ public class MovieEntity {
     @OneToMany(mappedBy = "movieEntity")
     List<CommentEntity> commentEntities;
     @ManyToMany
+    @JoinTable(
+            name = "movies_genres",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
     List<GenreEntity> genreEntities;
 
     public long getId() {

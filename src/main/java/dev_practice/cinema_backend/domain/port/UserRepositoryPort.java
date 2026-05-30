@@ -16,5 +16,6 @@ public interface UserRepositoryPort {
     User save(User user);
     List<User> findAll();
     Optional<User> findById(long id);
+    Optional<User> findByUsername(String username);
     void deleteById(long id);
 }

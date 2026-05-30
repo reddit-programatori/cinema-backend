@@ -47,6 +47,12 @@ public class UserPersistence implements UserRepositoryPort {
     }
 
     @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .map(userMapper::toDomain);
+    }
+
+    @Override
     public void deleteById(long id) {
         userRepository.deleteById(id);
     }

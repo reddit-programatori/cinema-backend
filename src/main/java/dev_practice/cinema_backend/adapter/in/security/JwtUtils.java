@@ -1,4 +1,4 @@
-package dev_practice.cinema_backend.security;
+package dev_practice.cinema_backend.adapter.in.security;
 
 
 import io.jsonwebtoken.Jwts;
@@ -21,7 +21,7 @@ public class JwtUtils {
     private long expirationMs;
 
 
-    private Key key(){
+    private Key key() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 

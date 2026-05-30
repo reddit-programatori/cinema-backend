@@ -1,16 +1,15 @@
-package dev_practice.cinema_backend.controller;
+package dev_practice.cinema_backend.adapter.in.controller;
 
 
-import dev_practice.cinema_backend.dto.SignInRequest;
-import dev_practice.cinema_backend.dto.SignInResponse;
-import dev_practice.cinema_backend.security.JwtUtils;
+import dev_practice.cinema_backend.adapter.in.controller.dto.SignInRequest;
+import dev_practice.cinema_backend.adapter.in.controller.dto.SignInResponse;
+import dev_practice.cinema_backend.adapter.in.security.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
