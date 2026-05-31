@@ -31,6 +31,10 @@ docker compose up --build
 
 The app boots on `http://localhost:8080`. Postgres is started automatically on a random host port (mapped to container `5432`).
 
+```bash
+docker compose down -v
+```
+
 ### Run tests
 ```bash
 ./gradlew test

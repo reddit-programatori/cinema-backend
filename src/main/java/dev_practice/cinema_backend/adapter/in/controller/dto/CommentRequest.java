@@ -9,6 +9,6 @@ public class CommentRequest {
 
     private int rating;
     private String text;
-    private long userId;
+    private String userId;
     private long movieId;
 }

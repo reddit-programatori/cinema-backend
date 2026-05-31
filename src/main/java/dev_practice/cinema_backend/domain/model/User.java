@@ -2,6 +2,7 @@ package dev_practice.cinema_backend.domain.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Represents a user in the application.
@@ -10,7 +11,7 @@ import java.util.Set;
 
 public class User {
 
-    private long id;
+    private UUID id;
     private String name;
     private String lastname;
     private String username;
@@ -21,7 +22,7 @@ public class User {
     public User() {
     }
 
-    public User(long id, String name, String lastname, String username, String email, String password,
+    public User(UUID id, String name, String lastname, String username, String email, String password,
                 Set<Role> roles) {
         this.id = id;
         this.name = name;
@@ -32,11 +33,11 @@ public class User {
         this.roles = roles != null ? roles : new HashSet<>();
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

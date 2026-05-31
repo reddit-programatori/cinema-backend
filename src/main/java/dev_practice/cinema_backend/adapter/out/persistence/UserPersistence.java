@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Connects application user operations to database access.
@@ -41,7 +42,7 @@ public class UserPersistence implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<User> findById(long id) {
+    public Optional<User> findById(UUID id) {
         return userRepository.findById(id)
                 .map(userMapper::toDomain);
     }
@@ -53,7 +54,7 @@ public class UserPersistence implements UserRepositoryPort {
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(UUID id) {
         userRepository.deleteById(id);
     }
 }
