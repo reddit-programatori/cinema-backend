@@ -32,7 +32,7 @@ public class UserMapper {
                 ? new HashSet<>()
                 : userEntity.getRoles().stream().map(roleMapper::toDomain).collect(Collectors.toSet());
         return new User(
-                userEntity.getId() == null ? 0L : userEntity.getId(),
+                userEntity.getId(),
                 userEntity.getName(),
                 userEntity.getLastname(),
                 userEntity.getUsername(),
@@ -50,7 +50,7 @@ public class UserMapper {
                 ? new HashSet<>()
                 : user.getRoles().stream().map(roleMapper::toEntity).collect(Collectors.toSet());
         return new UserEntity(
-                user.getId() == 0L ? null : user.getId(),
+                user.getId(),
                 user.getName(),
                 user.getLastname(),
                 user.getUsername(),

@@ -10,6 +10,6 @@ public class CommentResponse {
     private long id;
     private int rating;
     private String text;
-    private Long userId;
+    private String userId;
     private Long movieId;
 }

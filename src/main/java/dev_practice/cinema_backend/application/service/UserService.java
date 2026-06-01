@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Contains business logic related to users.
@@ -30,7 +31,7 @@ public class UserService {
         return userRepositoryPort.save(user);
     }
 
-    public User findById(long id) {
+    public User findById(UUID id) {
         return userRepositoryPort.findById(id)
             .orElseThrow(() -> NotFoundException.user(id));
     }
@@ -43,7 +44,7 @@ public class UserService {
         return userRepositoryPort.findAll();
     }
 
-    public User update(Long id, User user) {
+    public User update(UUID id, User user) {
         User existing = findById(id);
         existing.setName(user.getName());
         existing.setLastname(user.getLastname());
@@ -51,7 +52,7 @@ public class UserService {
         return userRepositoryPort.save(existing);
     }
 
-    public void delete(long id) {
+    public void delete(UUID id) {
         userRepositoryPort.deleteById(id);
     }
 }

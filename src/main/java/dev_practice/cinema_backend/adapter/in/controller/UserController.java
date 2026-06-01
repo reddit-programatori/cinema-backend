@@ -7,6 +7,7 @@ import dev_practice.cinema_backend.application.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Handles HTTP requests related to users.
@@ -37,17 +38,17 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public UserResponse getUser(@PathVariable long id) {
-        return userDtoMapper.toResponse(userService.findById(id));
+    public UserResponse getUser(@PathVariable String id) {
+        return userDtoMapper.toResponse(userService.findById(UUID.fromString(id)));
     }
 
     @PutMapping("{id}")
-    public UserResponse putUser(@PathVariable long id, @RequestBody UserRequest request) {
-        return userDtoMapper.toResponse(userService.update(id, userDtoMapper.toDomain(request)));
+    public UserResponse putUser(@PathVariable String id, @RequestBody UserRequest request) {
+        return userDtoMapper.toResponse(userService.update(UUID.fromString(id), userDtoMapper.toDomain(request)));
     }
 
     @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable long id) {
-        userService.delete(id);
+    public void deleteUser(@PathVariable String id) {
+        userService.delete(UUID.fromString(id));
     }
 }

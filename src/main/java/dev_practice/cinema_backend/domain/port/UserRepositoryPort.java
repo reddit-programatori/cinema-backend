@@ -4,6 +4,7 @@ import dev_practice.cinema_backend.domain.model.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Defines operations used for managing users.
@@ -15,7 +16,7 @@ public interface UserRepositoryPort {
 
     User save(User user);
     List<User> findAll();
-    Optional<User> findById(long id);
+    Optional<User> findById(UUID id);
     Optional<User> findByUsername(String username);
-    void deleteById(long id);
+    void deleteById(UUID id);
 }

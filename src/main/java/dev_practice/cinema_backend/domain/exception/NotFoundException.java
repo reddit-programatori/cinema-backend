@@ -1,13 +1,15 @@
 package dev_practice.cinema_backend.domain.exception;
 
+import java.util.UUID;
+
 public class NotFoundException extends RuntimeException{
 
     public NotFoundException(String message) {
         super(message);
     }
 
-    public static NotFoundException user(long id) {
-        return new NotFoundException("User not found with id: " + id);
+    public static NotFoundException user(UUID id) {
+        return new NotFoundException("User not found with id: " + id.toString());
     }
 
     public static NotFoundException comment(long id) {

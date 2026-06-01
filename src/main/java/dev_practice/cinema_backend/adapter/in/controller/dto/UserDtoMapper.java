@@ -25,7 +25,7 @@ public class UserDtoMapper {
                 ? Set.of()
                 : user.getRoles().stream().map(Role::getName).collect(Collectors.toSet());
         return new UserResponse(
-                user.getId(),
+                user.getId().toString(),
                 user.getName(),
                 user.getLastname(),
                 user.getUsername(),
