@@ -33,6 +33,7 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     List<GenreEntity> genreEntities;
+    private String url;
 
     public long getId() {
         return id;
@@ -90,10 +91,19 @@ public class MovieEntity {
         this.genreEntities = genreEntities;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public MovieEntity() {
     }
 
-    public MovieEntity(long id, String name, String description, Duration duration, int rating, List<CommentEntity> commentEntities, List<GenreEntity> genreEntities) {
+    public MovieEntity(long id, String name, String description, Duration duration, int rating,
+                       List<CommentEntity> commentEntities, List<GenreEntity> genreEntities, String url) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -101,5 +111,6 @@ public class MovieEntity {
         this.rating = rating;
         this.commentEntities = commentEntities;
         this.genreEntities = genreEntities;
+        this.url = url;
     }
 }

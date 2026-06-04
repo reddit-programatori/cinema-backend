@@ -40,7 +40,8 @@ public class MovieMapper {
                 movieEntity.getDuration(),
                 movieEntity.getRating(),
                 null,
-                genres
+                genres,
+                movieEntity.getUrl()
         );
     }
 
@@ -62,7 +63,8 @@ public class MovieMapper {
                 movie.getDuration(),
                 movie.getRating(),
                 null,
-                genreEntities
+                genreEntities,
+                movie.getUrl()
         );
     }
 }

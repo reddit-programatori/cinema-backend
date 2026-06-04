@@ -28,8 +28,8 @@ $$
             ('Comedy'), ('Mystery'), ('War'), ('Western'), ('Horror'), ('Family');
 
         INSERT INTO movies (name, description, duration, rating) VALUES
-            ('The Shawshank Redemption', 'Two imprisoned men bond over years, finding solace and redemption through acts of common decency.', 142 * 60 * 1000000000::bigint, 9),
-            ('The Godfather', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 175 * 60 * 1000000000::bigint, 9),
+            ('The Shawshank Redemption', 'Two imprisoned men bond over years, finding solace and redemption through acts of common decency.', 142 * 60 * 1000000000::bigint, 10),
+            ('The Godfather', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 175 * 60 * 1000000000::bigint, 10),
             ('The Dark Knight', 'Batman faces the Joker, a criminal mastermind who unleashes chaos on the people of Gotham.', 152 * 60 * 1000000000::bigint, 9),
             ('The Godfather Part II', 'The early life of Vito Corleone is intercut with the rise of his son Michael as the new Don.', 202 * 60 * 1000000000::bigint, 9),
             ('12 Angry Men', 'A jury holdout pushes his fellow jurors to reconsider the evidence in a capital murder case.', 96 * 60 * 1000000000::bigint, 9),
@@ -135,6 +135,56 @@ $$
         ) AS v(movie_name, genre_name)
         JOIN movies m ON m.name = v.movie_name
         JOIN genres g ON g.name = v.genre_name;
+
+    END
+$$
+^;
+
+-- Screenings seed in its own idempotent block (guarded on the screenings table, not movies)
+-- so it still runs when movies were seeded by an earlier version of this script.
+DO
+$$
+    BEGIN
+        IF EXISTS (SELECT 1 FROM screenings LIMIT 1) THEN
+            RETURN;
+        END IF;
+
+        -- Screenings for the first 10 movies, a randomly varying number each (1 to 3).
+        INSERT INTO screenings (cinema, date, movie_id)
+        SELECT v.cinema, v.show_date, m.id
+        FROM (VALUES
+            -- The Shawshank Redemption (2)
+            ('The Shawshank Redemption', 'Cinema City', TIMESTAMP '2026-06-10 18:00:00'),
+            ('The Shawshank Redemption', 'Grand Theater', TIMESTAMP '2026-06-12 21:00:00'),
+            -- The Godfather (1)
+            ('The Godfather', 'Starplex', TIMESTAMP '2026-06-11 20:00:00'),
+            -- The Dark Knight (3)
+            ('The Dark Knight', 'Cinema City', TIMESTAMP '2026-06-09 17:30:00'),
+            ('The Dark Knight', 'IMAX Arena', TIMESTAMP '2026-06-13 22:00:00'),
+            ('The Dark Knight', 'Downtown Cinema', TIMESTAMP '2026-06-15 19:00:00'),
+            -- The Godfather Part II (1)
+            ('The Godfather Part II', 'Grand Theater', TIMESTAMP '2026-06-14 20:30:00'),
+            -- 12 Angry Men (2)
+            ('12 Angry Men', 'Downtown Cinema', TIMESTAMP '2026-06-10 16:00:00'),
+            ('12 Angry Men', 'Starplex', TIMESTAMP '2026-06-16 18:30:00'),
+            -- Schindler's List (3)
+            ('Schindler''s List', 'Cinema City', TIMESTAMP '2026-06-11 19:00:00'),
+            ('Schindler''s List', 'Grand Theater', TIMESTAMP '2026-06-17 20:00:00'),
+            ('Schindler''s List', 'IMAX Arena', TIMESTAMP '2026-06-20 15:00:00'),
+            -- The Lord of the Rings: The Return of the King (1)
+            ('The Lord of the Rings: The Return of the King', 'IMAX Arena', TIMESTAMP '2026-06-12 14:00:00'),
+            -- Pulp Fiction (2)
+            ('Pulp Fiction', 'Starplex', TIMESTAMP '2026-06-13 21:30:00'),
+            ('Pulp Fiction', 'Downtown Cinema', TIMESTAMP '2026-06-18 22:30:00'),
+            -- The Lord of the Rings: The Fellowship of the Ring (3)
+            ('The Lord of the Rings: The Fellowship of the Ring', 'IMAX Arena', TIMESTAMP '2026-06-10 13:00:00'),
+            ('The Lord of the Rings: The Fellowship of the Ring', 'Cinema City', TIMESTAMP '2026-06-14 17:00:00'),
+            ('The Lord of the Rings: The Fellowship of the Ring', 'Grand Theater', TIMESTAMP '2026-06-19 20:00:00'),
+            -- The Good, the Bad and the Ugly (2)
+            ('The Good, the Bad and the Ugly', 'Downtown Cinema', TIMESTAMP '2026-06-15 16:30:00'),
+            ('The Good, the Bad and the Ugly', 'Starplex', TIMESTAMP '2026-06-21 18:00:00')
+        ) AS v(movie_name, cinema, show_date)
+        JOIN movies m ON m.name = v.movie_name;
 
     END
 $$

@@ -17,6 +17,7 @@ public class Movie {
     private int rating;
     List<Comment> comments;
     List<Genre> genres;
+    private String url;
 
     public long getId() {
         return id;
@@ -74,7 +75,15 @@ public class Movie {
         this.genres = genres;
     }
 
-    public Movie(long id, String name, String description, Duration duration, int rating, List<Comment> comments, List<Genre> genres) {
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Movie(long id, String name, String description, Duration duration, int rating, List<Comment> comments, List<Genre> genres, String url) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -82,5 +91,6 @@ public class Movie {
         this.rating = rating;
         this.comments = comments;
         this.genres = genres;
+        this.url = url;
     }
 }

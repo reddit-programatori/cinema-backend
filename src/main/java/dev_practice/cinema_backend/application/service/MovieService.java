@@ -5,6 +5,7 @@ import dev_practice.cinema_backend.domain.model.Movie;
 import dev_practice.cinema_backend.domain.port.MovieRepositoryPort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -30,6 +31,11 @@ public class MovieService {
                 .orElseThrow(() -> NotFoundException.movie(id));
     }
 
+    public Movie findBestRatedMovie() {
+        return movieRepositoryPort.findBestRatedMovie()
+                .orElseThrow(() -> NotFoundException.movie(0));
+    }
+
     public List<Movie> findAll() {
         return movieRepositoryPort.findAll();
     }
@@ -45,5 +51,13 @@ public class MovieService {
 
     public void deleteById(long id) {
         movieRepositoryPort.deleteById(id);
+    }
+
+    public List<Movie> findAllByGenreIn(String genre) {
+        return movieRepositoryPort.findAllByGenreIn(genre);
+    }
+
+    public List<Movie> findAllUpcomingMovies() {
+        return movieRepositoryPort.findAllUpcomingMoves();
     }
 }

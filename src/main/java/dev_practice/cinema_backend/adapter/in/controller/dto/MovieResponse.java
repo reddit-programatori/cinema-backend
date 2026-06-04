@@ -16,4 +16,6 @@ public class MovieResponse {
     private Duration duration;
     private int rating;
     private List<GenreResponse> genres;
+    private String url;
+    private List<ScreeningResponse> screening;
 }

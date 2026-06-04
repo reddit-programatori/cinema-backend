@@ -13,7 +13,7 @@ public class CommentDtoMapper {
     public Comment toDomain(CommentRequest request) {
         User user = new User();
         user.setId(UUID.fromString(request.getUserId()));
-        Movie movie = new Movie(request.getMovieId(), null, null, null, 0, null, null);
+        Movie movie = new Movie(request.getMovieId(), null, null, null, 0, null, null, null);
         return new Comment(0L, request.getRating(), request.getText(), user, movie);
     }
 

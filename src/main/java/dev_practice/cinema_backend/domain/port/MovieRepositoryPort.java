@@ -2,6 +2,7 @@ package dev_practice.cinema_backend.domain.port;
 
 import dev_practice.cinema_backend.domain.model.Movie;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,5 +18,9 @@ public interface MovieRepositoryPort {
     List<Movie> findAll();
     Optional<Movie> findById(long id);
     void deleteById(long id);
+    Optional<Movie> findBestRatedMovie();
 
+    List<Movie> findAllByGenreIn(String genre);
+
+    List<Movie> findAllUpcomingMoves();
 }

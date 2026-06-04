@@ -2,6 +2,7 @@ package dev_practice.cinema_backend.adapter.in.controller.dto;
 
 import dev_practice.cinema_backend.domain.model.Genre;
 import dev_practice.cinema_backend.domain.model.Movie;
+import dev_practice.cinema_backend.domain.model.Screening;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,13 +20,14 @@ public class MovieDtoMapper {
         List<Genre> genres = request.getGenreIds() == null ? List.of()
                 : request.getGenreIds().stream().map(id -> new Genre(id, null, null)).toList();
         return new Movie(0L, request.getName(), request.getDescription(),
-                request.getDuration(), request.getRating(), null, genres);
+                request.getDuration(), request.getRating(), null, genres, null);
     }
 
-    public MovieResponse toResponse(Movie movie) {
+    public MovieResponse toResponse(Movie movie, List<Screening> screenings) {
         List<GenreResponse> genres = movie.getGenres() == null ? List.of()
                 : movie.getGenres().stream().map(genreDtoMapper::toResponse).toList();
         return new MovieResponse(movie.getId(), movie.getName(), movie.getDescription(),
-                movie.getDuration(), movie.getRating(), genres);
+                movie.getDuration(), movie.getRating(), genres, movie.getUrl(),
+                screenings.stream().map(screening -> new ScreeningResponse(screening.getId(), screening.getCinema(), screening.getDate().toString())).toList());
     }
 }

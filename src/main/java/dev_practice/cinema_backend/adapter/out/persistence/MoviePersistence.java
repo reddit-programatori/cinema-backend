@@ -50,4 +50,26 @@ public class MoviePersistence implements MovieRepositoryPort {
     public void deleteById(long id) {
         movieRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Movie> findBestRatedMovie() {
+        return movieRepository.findBestRatedMovie()
+                .map(movieMapper::toDomain);
+    }
+
+    @Override
+    public List<Movie> findAllByGenreIn(String genre) {
+        return movieRepository.findAllByGenreEntitiesName(genre)
+                .stream()
+                .map(movieMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Movie> findAllUpcomingMoves() {
+        return movieRepository.findAllUpcomingMovies()
+                .stream()
+                .map(movieMapper::toDomain)
+                .toList();
+    }
 }
