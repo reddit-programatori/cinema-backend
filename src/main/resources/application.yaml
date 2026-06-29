@@ -2,7 +2,7 @@ spring:
 
   spring:
   datasource:
-    url: postgresql://cinema_backend_db_user:LEG7N6Z6WmfeSo5XZPkLgcZwtspyIL62@dpg-d912t07avr4c739664r0-a:5432/cinema_backend_db
+    url: dpg-d912t07avr4c739664r0-a:5432/cinema_backend_db
     username: mycinema_backend_db_useruser
     password: LEG7N6Z6WmfeSo5XZPkLgcZwtspyIL62
     driver-class-name: org.postgresql.Driver
